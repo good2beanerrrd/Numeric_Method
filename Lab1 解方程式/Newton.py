@@ -24,41 +24,32 @@ def f3(x):
 def f3_differential(x):
     return math.exp(x) - 5
 
-def Newton(a, b, f):
-    if f(a)*f(b) >= 0:
-        print("Try another a and b")
-    else:
-        m = (a*f(b) - b*f(a)) / (f(b)-f(a))
-        old_m = m
-        while abs(m-old_m) >= epsilon:
-            if f(a)*f(m) < 0:
-                b = m
-            else:
-                a = m
-            # update m
-            m = (a*f(b) - b*f(a)) / (f(b)-f(a))
-        print("False Position solution is", m)
+def Newton(x, f, df):
+    init_x = x
+    delta = -(f(x) / df(x))
+    x += delta
+    while abs(delta) >= epsilon:
+        delta = -(f(x) / df(x))
+        x += delta
+    print("Newton method solution is", x, "initial input x is ", init_x)
 
 
 def main():
-    f1_a = -2
-    f1_b = -1
+    f1_x_init = -1
     print("Function1: x*x - 2*x - 5")
-    Newton(f1_a, f1_b, f1)
+    Newton(f1_x_init, f1, f1_differential)
 
     print("---------------------------------------------------------------")
 
-    f2_a = 3
-    f2_b = 4
+    f2_x_init = 2
     print("Function2: -x*x*x + 29")
-    Newton(f2_a, f2_b, f2)
+    Newton(f2_x_init, f2, f2_differential)
 
     print("---------------------------------------------------------------")
 
-    f3_a = 0
-    f3_b = 1
+    f3_x_init = 0
     print("Function3: exp(x) - 5*x + 2")
-    Newton(f3_a, f3_b, f3)
+    Newton(f3_x_init, f3, f3_differential)
 
 
 if __name__ == '__main__':
