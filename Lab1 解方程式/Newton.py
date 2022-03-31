@@ -7,13 +7,22 @@ epsilon = math.pow(10, -6)
 def f1(x):
     return x*x - 2*x - 5
 
+def f1_differential(x):
+    return x - 2
+
 #function 2
 def f2(x):
     return -x*x*x + 29
 
+def f2_differential(x):
+    return -3*x*x
+
 #function 3
 def f3(x):
     return math.exp(x) - 5*x + 2
+
+def f3_differential(x):
+    return math.exp(x) - 5
 
 def Newton(a, b, f):
     if f(a)*f(b) >= 0:
