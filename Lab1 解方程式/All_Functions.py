@@ -20,6 +20,7 @@ def f2(x):
 
 def g2(x):
     return math.pow(29, 1/3)
+
 def f2_differential(x):
     return -3*x*x
 
@@ -35,10 +36,13 @@ def f3_differential(x):
 
 #function 4
 def f4(x):
-    return math.exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24
+    return math.exp(1.63*x*math.sin(x)) - 2.38*x*x - 3.6*x + 1.24
 
 def g4(x):
-    return
+    return (math.exp(1.63*x*math.sin(x)) + 1.24) / (2.38*x + 3.6)
+
+def f4_differential(x):
+    return 1.63*math.exp(1.63*x*math.sin(x))*(math.sin(x)+x*math.cos(x))-2*2.38*x - 3.6
 
 def Fixed_Point(x1, f, g):
     cnt = 0
@@ -70,7 +74,7 @@ def False_Position(a, b, f):
         m = (a*f(b) - b*f(a)) / (f(b)-f(a))
         old_m = m
         cnt = 0
-        while abs(m-old_m) >= epsilon or cnt == 0:
+        while abs(m-old_m) > epsilon:
             cnt += 1
             if f(a)*f(m) < 0:
                 b = m
@@ -134,6 +138,54 @@ def main():
     # Secant(f3_a, f3_b, f3)
     # Newton(f3_x_init, f3, f3_differential)
 
+    f4_a = -3
+    f4_b = -2
+    f4_x_init = -2
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+    False_Position(f4_a, f4_b, f4)
+    Fixed_Point(f4_a, f4, g4)
+    Secant(f4_a, f4_b, f4)
+    Newton(f4_x_init, f4, f4_differential)
+    print("---------------------------------------------------------------")
+
+    f4_a = 0
+    f4_b = 0.9
+    f4_x_init = 0
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+    False_Position(f4_a, f4_b, f4)
+    Fixed_Point(f4_a, f4, g4)
+    Secant(f4_a, f4_b, f4)
+    Newton(f4_x_init, f4, f4_differential)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = 0.9
+    f4_b = 2
+    f4_x_init = 1
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+    False_Position(f4_a, f4_b, f4)
+    Fixed_Point(f4_a, f4, g4)
+    Secant(f4_a, f4_b, f4)
+    Newton(f4_x_init, f4, f4_differential)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = 2
+    f4_b = 3
+    f4_x_init = 2
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+    False_Position(f4_a, f4_b, f4)
+    Fixed_Point(f4_a, f4, g4)
+    Secant(f4_a, f4_b, f4)
+    Newton(f4_x_init, f4, f4_differential)
 
 if __name__ == '__main__':
 	main()

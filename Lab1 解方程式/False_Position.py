@@ -17,18 +17,20 @@ def f3(x):
 
 def False_Position(a, b, f):
     if f(a)*f(b) >= 0:
-        print("Try another a and b")
+        print("You have not assumed right a and b\n")
     else:
         m = (a*f(b) - b*f(a)) / (f(b)-f(a))
         old_m = m
-        while abs(m-old_m) >= epsilon:
+        cnt = 0
+        while abs(m-old_m) > epsilon:
+            cnt += 1
             if f(a)*f(m) < 0:
                 b = m
             else:
                 a = m
             # update m
             m = (a*f(b) - b*f(a)) / (f(b)-f(a))
-        print("False Position solution is", m)
+        print("False Position solution is", m, ", taking ", cnt, " steps.")
 
 
 def main():

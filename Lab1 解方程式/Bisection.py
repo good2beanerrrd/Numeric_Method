@@ -2,7 +2,7 @@ from cmath import sin
 import math
 
 epsilon = math.pow(10, -6)
-epoch = math.pow(10, 8)
+epoch = math.pow(10, 5)
 
 #function 1
 def f1(x):
@@ -18,7 +18,7 @@ def f3(x):
 
 #function 4
 def f4(x):
-    return math.exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24
+    return math.exp(1.63*x*math.sin(x)) - 2.38*x*x - 3.6*x + 1.24
 
 def Bisection(a, b, f):
     if f(a)*f(b) >= 0:
@@ -36,7 +36,7 @@ def Bisection(a, b, f):
 
 
 def main():
-    f1_a = -2
+    f1_a = -3
     f1_b = -1
     print("Function1: x*x - 2*x - 5")
     Bisection(f1_a, f1_b, f1)
@@ -57,7 +57,23 @@ def main():
 
     print("---------------------------------------------------------------")
 
-    f4_a = 3
+    f4_a = -3
+    f4_b = 0
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = 0
+    f4_b = 0.9
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = 0.9
     f4_b = 2
     print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
     print("a=", f4_a, ", b=", f4_b)
@@ -66,23 +82,7 @@ def main():
     print("---------------------------------------------------------------")
 
     f4_a = 2
-    f4_b = 1
-    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
-    print("a=", f4_a, ", b=", f4_b)
-    Bisection(f4_a, f4_b, f4)
-
-    print("---------------------------------------------------------------")
-
-    f4_a = 1
-    f4_b = 0
-    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
-    print("a=", f4_a, ", b=", f4_b)
-    Bisection(f4_a, f4_b, f4)
-
-    print("---------------------------------------------------------------")
-
-    f4_a = -2
-    f4_b = 0
+    f4_b = 3
     print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
     print("a=", f4_a, ", b=", f4_b)
     Bisection(f4_a, f4_b, f4)

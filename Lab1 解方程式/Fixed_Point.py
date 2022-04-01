@@ -25,33 +25,32 @@ def f3(x):
 def g3(x):
     return (math.exp(x) + 2) / 5
 
-
-def Fixed_Position(x1, f, g):
+def Fixed_Point(x1, f, g):
     cnt = 0
     x2 = g(x1)
     while abs(x1 - x2) >= epsilon and cnt <= epoch:
         cnt += 1
         x1 = x2
         x2 = g(x1)
-    print("Fixed_Position Method solution is", x2)
+    print("Fixed_Point Method solution is", x2)
 
 
 def main():
     f1_a = -2
     print("Function1: x*x - 2*x - 5")
-    Fixed_Position(f1_a, f1, g1)
+    Fixed_Point(f1_a, f1, g1)
 
     print("---------------------------------------------------------------")
 
     f2_a = 3
     print("Function2: -x*x*x + 29")
-    Fixed_Position(f2_a, f2, g2)
+    Fixed_Point(f2_a, f2, g2)
 
     print("---------------------------------------------------------------")
 
     f3_a = 0
     print("Function3: exp(x) - 5*x + 2")
-    Fixed_Position(f3_a, f3, g3)
+    Fixed_Point(f3_a, f3, g3)
 
 
 if __name__ == '__main__':
