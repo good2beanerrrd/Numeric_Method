@@ -16,9 +16,13 @@ def f2(x):
 def f3(x):
     return math.exp(x) - 5*x + 2
 
+#function 4
+def f4(x):
+    return math.exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24
+
 def Bisection(a, b, f):
     if f(a)*f(b) >= 0:
-        print("Try another a and b")
+        print("You have not assumed right a and b\n")
     else:
         cnt = 0
         while abs(a-b) >= 2*epsilon and cnt < epoch:
@@ -28,7 +32,7 @@ def Bisection(a, b, f):
                 b = m
             else:
                 a = m
-        print("Bisection solution is", (a+b)/2)
+        print("Bisection solution is", (a+b)/2, ", taking ", cnt, " steps.")
 
 
 def main():
@@ -50,6 +54,38 @@ def main():
     f3_b = 1
     print("Function3: exp(x) - 5*x + 2")
     Bisection(f3_a, f3_b, f3)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = 3
+    f4_b = 2
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = 2
+    f4_b = 1
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = 1
+    f4_b = 0
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
+
+    print("---------------------------------------------------------------")
+
+    f4_a = -2
+    f4_b = 0
+    print("Function4: exp(1.63*x*sin(x)) - 2.38*x*x - 3.6*x + 1.24")
+    print("a=", f4_a, ", b=", f4_b)
+    Bisection(f4_a, f4_b, f4)
 
 if __name__ == '__main__':
 	main()
