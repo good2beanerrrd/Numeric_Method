@@ -8,7 +8,7 @@ def f1(x):
     return x*x - 2*x - 5
 
 def f1_differential(x):
-    return x - 2
+    return 2*x - 2
 
 #function 2
 def f2(x):
@@ -35,7 +35,7 @@ def Newton(x, f, df):
 
 
 def main():
-    f1_x_init = -1
+    f1_x_init = -3
     print("Function1: x*x - 2*x - 5")
     Newton(f1_x_init, f1, f1_differential)
 

@@ -24,7 +24,7 @@ def Secant(x1, x2, f):
 
 
 def main():
-    f1_a = -2
+    f1_a = -3
     f1_b = -1
     print("Function1: x*x - 2*x - 5")
     Secant(f1_a, f1_b, f1)

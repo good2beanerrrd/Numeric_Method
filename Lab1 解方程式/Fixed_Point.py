@@ -36,7 +36,7 @@ def Fixed_Point(x1, f, g):
 
 
 def main():
-    f1_a = -2
+    f1_a = -3
     print("Function1: x*x - 2*x - 5")
     Fixed_Point(f1_a, f1, g1)
 

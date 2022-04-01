@@ -34,7 +34,7 @@ def False_Position(a, b, f):
 
 
 def main():
-    f1_a = -2
+    f1_a = -3
     f1_b = -1
     print("Function1: x*x - 2*x - 5")
     False_Position(f1_a, f1_b, f1)
