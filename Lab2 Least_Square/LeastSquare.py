@@ -1,3 +1,5 @@
+from curses import curs_set
+from tracemalloc import start
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -28,12 +30,12 @@ def get_coefficient(m):
         for j in range (dim):
             for x in X:
                 if i!=0 and j!=0:
-                    A[i][j] += math.pow(x, i+j)
+                    A[i][j] += pow(x, (i+j))
     
     #求矩陣B
     for i in range (dim):
         for j in range (n):
-            B[i] += Y[j] * math.pow(X[j], i)
+            B[i] += Y[j] * pow(X[j], i)
 
     #return x of Ax = b
     return np.linalg.solve(A, B)
@@ -43,42 +45,38 @@ def Pm(m, x):
     #get the coefficients of Pm
     coeff = get_coefficient(m)  
     ans = 0     #P(m)代入x之值
-    for i in range (m):
+    for i in range (m+1):
         ans += coeff[i] * math.pow(x, i)
     #回傳m次多項式代入x之值
     return ans
 
 #計算誤差
 def error(m):
-    e = 0.0
+    e = 0
     for i in range (n):
         e += (Pm(m, X[i])-Y[i])**2
+
     return math.sqrt(e / (n-m))
 
-def drawGraph(minPm):
-	line_x = np.linspace(0.0, 10.0, 100)		# x從 0 ~ 10 間隔 0.1
-	line_y = [ Pm(minPm, x) for x in line_x ]	# 將x代入Pm
-	plt.title(f'The Best Choice is P{minPm}(x)', fontsize = 20)		# 標題
-	plt.axis([0,10,0,5])						# 設定x, y座標的範圍( X:0~10 ; Y:0~5 )
-	plt.xlabel('X', fontsize=16)				# X軸標題
-	plt.ylabel('Y', fontsize=16, rotation=0)	# Y軸標題 並將標題方向轉正
-	plt.scatter(X, Y, color='green')			# 印出原先的數據(綠色的圓點)
-	plt.plot(line_x, line_y, color='red')		# 畫線
-	plt.show()									# 顯示繪製的圖形
-
 def main():
-    pre_Error = error(1)
-    bestChoice = 1
-    for i in range (2, n):
+    minError = error(20)
+    bestChoice = 20
+
+    # for i in range (20, n):
+    #     cur_error = error(i)
+    #     print("\nP%d(x)'s"%i, " error is %f\n"%cur_error)
+    #     if (minError/cur_error) < 2:
+    #         break
+    #     minError = cur_error
+    #     bestChoice = i
+    for i in range (20, n):
         cur_error = error(i)
-        if (pre_Error < cur_error) :
-            break
-        pre_Error = cur_error
-        bestChoice = i
+        print("\nP%d(x)'s"%i, " error is %f\n"%cur_error)
+        if cur_error < minError:
+            minError = cur_error
+            bestChoice = i
 
     print("The best choice is P%d(x)" %bestChoice)      #印出幾次式是最好的
-    drawGraph(bestChoice)
-
 
 if __name__ == '__main__':
     main()
