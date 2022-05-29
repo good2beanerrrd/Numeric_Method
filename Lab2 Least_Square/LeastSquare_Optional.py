@@ -49,10 +49,10 @@ def error(m):
     return math.sqrt(e / (n-m))
 
 def main():
-    minError = error(2)
-    bestChoice = 2
+    minError = error(1)
+    bestChoice = 1
 
-    for i in range (2, n):
+    for i in range (1, n):
         cur_error = error(i)
         print("\nP%d(x)'s"%i, " error is %f\n"%cur_error)
         if cur_error < minError:
