@@ -58,6 +58,17 @@ def error(m):
 
     return math.sqrt(e / (n-m))
 
+def drawGraph(minPm):
+	line_x = np.linspace(0.0, 10.0, 100)		# x從 0 ~ 10 間隔 0.1
+	line_y = [ Pm(minPm, x) for x in line_x ]	# 將x代入Pm
+	plt.title(f'The Best Choice is P{minPm}(x)', fontsize = 20)		# 標題
+	plt.axis([0,10,0,5])						# 設定x, y座標的範圍( X:0~10 ; Y:0~5 )
+	plt.xlabel('X', fontsize=16)				# X軸標題
+	plt.ylabel('Y', fontsize=16, rotation=0)	# Y軸標題 並將標題方向轉正
+	plt.scatter(X, Y, color='green')			# 印出原先的數據(綠色的圓點)
+	plt.plot(line_x, line_y, color='red')		# 畫線
+	plt.show()									# 顯示繪製的圖形
+
 def main():
     minError = error(20)
     bestChoice = 20
@@ -75,8 +86,9 @@ def main():
         if cur_error < minError:
             minError = cur_error
             bestChoice = i
-
+            
     print("The best choice is P%d(x)" %bestChoice)      #印出幾次式是最好的
+    drawGraph(bestChoice)
 
 if __name__ == '__main__':
     main()
