@@ -27,7 +27,6 @@ def main():
     offset = 0.001      #方便計算.001~.009 如果要算.00n時 改這個變數即可
     for i in range (500):
         print(round(simpson(0.01*i+offset, n)+0.5, 6))      #四捨五入到小數點後第六位
-        print(" ")
 
 if __name__ =='__main__':
     main()
