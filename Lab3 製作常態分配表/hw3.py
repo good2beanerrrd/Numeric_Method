@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+import pandas as pd
+import numpy as np
 import math
 
 def f(x):
@@ -9,7 +12,6 @@ def f(x):
 def simpson(x, n):
     sum = 0
     delta = x/n     #delta = x/n = (b-a)/n = h
-
     for x in range(0, n+1):      #分成n份
         if x==0 or x==n :
             sum += f(x*delta)
@@ -24,9 +26,14 @@ def simpson(x, n):
 
 def main():
     n = 100     #要切的間隔數
-    offset = 0.001      #方便計算.001~.009 如果要算.00n時 改這個變數即可
+    offset = 0.001*int(input())     #方便計算.001~.009 如果要算.00n時 改這個變數即可
+    ans = []
+    ans.append(offset/0.001)
     for i in range (500):
-        print(round(simpson(0.01*i+offset, n)+0.5, 6))      #四捨五入到小數點後第六位
+        ans.append(round(simpson(0.01*i+offset, n)+0.5, 6))     #四捨五入到小數點後第六位
+    
+    ans = pd.DataFrame(ans)
+    ans.to_csv('./Lab3 製作常態分配表/ans.csv', index=False)
 
 if __name__ =='__main__':
     main()
