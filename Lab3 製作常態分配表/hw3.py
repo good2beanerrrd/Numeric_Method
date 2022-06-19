@@ -9,9 +9,9 @@ def f(x):
 # Simpson's 1/3 Rule
 # 參數x是normal dist.中積分的z
 # 參數n是要切成幾份
-def simpson(x, n):
+def simpson(X, n):
     sum = 0
-    delta = x/n     #delta = x/n = (b-a)/n = h
+    delta = X/n     #delta = X/n = (b-a)/n = h
     for x in range(0, n+1):      #分成n份
         if x==0 or x==n :
             sum += f(x*delta)
